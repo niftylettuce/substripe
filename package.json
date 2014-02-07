@@ -19,10 +19,21 @@
     "renewal",
     "substripe"
   ],
+  "bin": {
+    "substripe": "./server.js"
+  },
   "author": "Nick Baugh <niftylettuce@gmail.com>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/niftylettuce/substripe/issues"
   },
-  "homepage": "https://github.com/niftylettuce/substripe"
+  "homepage": "https://github.com/niftylettuce/substripe",
+  "dependencies": {
+    "stripe": "~2.4.1",
+    "underscore": "~1.5.2",
+    "express": "~3.4.8",
+    "connect-multiparty": "~1.0.3",
+    "jade": "~1.1.5",
+    "accounting": "~0.3.2"
+  }
 }
