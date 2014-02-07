@@ -1,0 +1,28 @@
+{
+  "name": "substripe",
+  "version": "0.0.0",
+  "description": "Extremely simple subscription payment form with Stripe in seconds.",
+  "main": "server.js",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/niftylettuce/substripe.git"
+  },
+  "keywords": [
+    "stripe",
+    "subscription",
+    "simple",
+    "recurring",
+    "payment",
+    "payments",
+    "monthly",
+    "renew",
+    "renewal",
+    "substripe"
+  ],
+  "author": "Nick Baugh <niftylettuce@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/niftylettuce/substripe/issues"
+  },
+  "homepage": "https://github.com/niftylettuce/substripe"
+}
