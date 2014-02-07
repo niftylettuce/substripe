@@ -20,8 +20,11 @@ if (_.isString(process.env.PORT))
   config.port = parseInt(process.env.PORT, 10)
 
 // check that the path exists if it is set
-if (_.isString(process.env.PUBLIC) && !fs.existsSync(process.env.PUBLIC))
-  throw new Error('Path specified for public directory for serving assets does not exist')
+if (_.isString(process.env.PUBLIC)) {
+  if (!fs.existsSync(path.resolve(process.env.PUBLIC)))
+    throw new Error('Path specified for public directory for serving assets does not exist')
+  config.public = path.resolve(process.env.PUBLIC)
+}
 
 // validate secret key
 if (!_.isString(config.sk))
@@ -171,6 +174,27 @@ app.use(express.static(path.resolve(config.public)))
 
 app.use(app.router)
 
-app.listen(config.port, function() {
-  console.log('server started on port %d', config.port)
-})
+if (!_.isString(process.env.NODE_ENV) || process.env.NODE_ENV !== 'production') {
+  app.listen(config.port, function() {
+    console.log('development server started on port %d', config.port)
+  })
+} else {
+
+  if (!_.isString(process.env.KEY) || !fs.existsSync(path.resolve(process.env.KEY)))
+    throw new Error('SSL certificate path to KEY environment variable is missing')
+
+  if (!_.isString(process.env.CERT) || !fs.existsSync(path.resolve(process.env.CERT)))
+    throw new Error('SSL certificate path to CERT environment variable is missing')
+
+  var https = require('https')
+
+  var options = {
+    key: fs.readFileSync(path.resolve(process.env.KEY)),
+    cert: fs.readFileSync(path.resolve(process.env.CERT))
+  }
+
+  var server = https.createServer(options, app).listen(443, function() {
+    console.log('production server started on port 443')
+  })
+
+}

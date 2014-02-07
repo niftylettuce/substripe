@@ -33,6 +33,8 @@ Here are the following environment variables and their default values.
 | PUBLIC               | `./`            | Path to public directory for serving assets (e.g. Stripe Checkout image, see below [Tricks](#tricks))
 | PORT                 | 3000            | Port to run substripe server on
 | NODE_ENV             | development (if value is "production", then PORT is set to 443) | Node.js environment (either "development" or "production")
+| KEY                  | None (required in production) | Path to SSL key
+| CERT                 | None (required in production) | Path to SSL cert
 
 ### Development Mode
 
@@ -48,8 +50,10 @@ Register a domain name and an SSL certificate (e.g. PositiveSSL or RapidSSL) at 
 
 Port is automatically set to 443 (https protocol) in production mode (as required by Stripe), so you don't need to pass `PORT` environment variable like in development mode (see above).
 
+You need to pass a valid path to the SSL certificate's key and cert files as well.
+
 ```bash
-NODE_ENV=production PUBLIC=./ SK=stripe-live-sk PK=stripe-live-pk substripe
+NODE_ENV=production KEY=./key.pem CERT=./cert.pem PUBLIC=./ SK=stripe-live-sk PK=stripe-live-pk substripe
 ```
 
 <https://yourdomain.com/plan/{{stripe_plan_id}}>
