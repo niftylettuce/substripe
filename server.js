@@ -93,9 +93,30 @@ app.get('/plan/:stripe_plan_id', getAccount, getPlan, function(req, res, next) {
 })
 
 // create subscription
-app.post('/plan/:stripe_plan_id', multipart(), getAccount, getPlan, function(err, req, res, next) {
-  if (err) return next(err)
-  console.log('req.body', req.body)
+app.post('/plan/:stripe_plan_id', multipart(), getAccount, getPlan, function(req, res, next) {
+  if (!_.isString(req.body.stripeToken))
+    return next(new Error('stripeToken is missing'))
+  if (!_.isString(req.body.stripeEmail))
+    return next(new Error('stripeEmail is missing'))
+  stripe.customers.create({
+    description: 'Substripe subscription for ' + req.body.stripeEmail,
+    card: req.body.stripeToken,
+    email: req.body.stripeEmail
+  }, createCustomer)
+
+  function createCustomer(err, customer) {
+    if (err) return next(err)
+    stripe.customers.createSubscription(customer.id, {
+      plan: res.locals.plan.id
+    }, createSubscription)
+  }
+
+  function createSubscription(err, subscription) {
+    if (err) return next(err)
+    res.locals.subscription = subscription
+    res.render('subscription')
+  }
+
 })
 
 // helper function to reduce length of interval string

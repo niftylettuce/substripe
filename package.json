@@ -1,6 +1,6 @@
 {
   "name": "substripe",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Extremely simple subscription payment form with Stripe in seconds.",
   "main": "server.js",
   "repository": {

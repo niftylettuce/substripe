@@ -7,20 +7,20 @@ Extremely simple subscription payment form with Stripe in seconds.
 
 Great for charging {{someone}} for a monthly subscription to {{something}}.
 
-Try out the demo at <http://substripe.com/demo> (enter credit card 4242-4242-4242-4242 with any valid exp date and any CVC).
+Try out the demo at <http://substripe.com:3000/plan/demo> (enter credit card 4242-4242-4242-4242 with any valid exp date and any CVC).
 
 > View this documentation at <http://documentup.com/niftylettuce/substripe>.
 
 
 ## Quick Start
 
-1. Create a new Stripe subscription plan at <https://manage.stripe.com/plans> (create identical plans in both Live and Test mode).
-2. Configure Stripe to automatically [send emails upon successful payments](https://manage.stripe.com/account/emails).
-3. Install `substripe` as a global module with NPM:
+* Create a new Stripe subscription plan at <https://manage.stripe.com/plans> (create identical plans in both Live and Test mode).
+* Configure Stripe to automatically [send emails upon successful payments](https://manage.stripe.com/account/emails).
+* Install `substripe` as a global module with NPM:
 ```bash
 npm install -g substripe
 ```
-4. Spin up a server in either development or production mode (see below).
+* Spin up a server in either development or production mode (see below).
 
 ### Environment Variables
 
@@ -59,11 +59,11 @@ NODE_ENV=production PUBLIC=./ SK=stripe-live-sk PK=stripe-live-pk substripe
 
 You can add the following options as querystring parameters to pre-populate the Stripe checkout form.  These options are the same the [Configuration Options](https://stripe.com/docs/checkout#integration-simple-options) from Stripe.
 
-> (e.g. pre-populate an image and an email address of the customer <https://yourdomain.com/{{stripe_plan_id}}?image=substripe.png&email=niftylettuce@gmail.com>)
+> (e.g. pre-populate an image and an email address of the customer <https://yourdomain.com/{{stripe_plan_id}}?image=%2Fsubstripe.png&email=niftylettuce@gmail.com>)
 
 | Param            | Default Value
 | ---------------- | --------------
-| image            | "substripe.png"
+| image            | "/substripe.png"
 | name             | [display name]
 | description      | "Subscribe to {{plan.name}}"
 | amount           | {{plan.amount}} (cents)

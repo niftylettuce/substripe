@@ -5,5 +5,5 @@ block body
   .container
     .jumbotron
       h1 Subscribe to #{plan.name}
-      form(action='/' + plan.id, method='POST', enctype='multipart/form-data')
+      form(action='/plan/' + plan.id, method='POST', enctype='multipart/form-data')
         script(src='https://checkout.stripe.com/checkout.js', data-key=config.pk, data-image=data.image, data-description=data.description, data-amount=data.amount, data-currency=data.currency, data-panel-label=data.panel_label, data-billing-address=data.billing_address, data-shipping-address=data.shipping_address, data-email=data.email, data-label=data.label).stripe-button
