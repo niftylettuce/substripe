@@ -186,11 +186,15 @@ if (!_.isString(process.env.NODE_ENV) || process.env.NODE_ENV !== 'production') 
   if (!_.isString(process.env.CERT) || !fs.existsSync(path.resolve(process.env.CERT)))
     throw new Error('SSL certificate path to CERT environment variable is missing')
 
+  if (!_.isString(process.env.CA) || !fs.existsSync(path.resolve(process.env.CA)))
+    throw new Error('SSL certificate path to CA environment variable is missing')
+
   var https = require('https')
 
   var options = {
     key: fs.readFileSync(path.resolve(process.env.KEY)),
-    cert: fs.readFileSync(path.resolve(process.env.CERT))
+    cert: fs.readFileSync(path.resolve(process.env.CERT)),
+    ca: fs.readFileSync(path.resolve(process.env.CA))
   }
 
   var server = https.createServer(options, app).listen(443, function() {
