@@ -1,7 +1,7 @@
 
 # Substripe [![NPM version](https://badge.fury.io/js/substripe.png)](http://badge.fury.io/js/substripe) [![Gittip](http://img.shields.io/gittip/niftylettuce.png)](https://www.gittip.com/niftylettuce/)
 
-[![Substripe](https://raw2.github.com/niftylettuce/substripe/master/public/substripe.png)]
+![Substripe](https://raw2.github.com/niftylettuce/substripe/master/public/substripe.png)
 
 Extremely simple subscription payment form with Stripe in seconds.
 
